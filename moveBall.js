@@ -2,8 +2,8 @@
 
 
 //Ball------
-var velocityX = 3.5;
-var velocityY = 2.5;
+var velocityX = 15;
+var velocityY = 10;
 var positionX = 0;
 var positionY = 0;
 const ball = document.getElementById('ball');
@@ -16,46 +16,47 @@ function setSize(){
     (ball.style.width = Math.floor(Math.random() * 100)+20);
   }
 
+//Random Color------
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+    }
+    
+    function setRandomColor() {
+    (ball.style.background = getRandomColor());
+    }    
+
+//Bounce------
+function bounceX() {
+    setRandomColor();
+        setSize();
+        velocityX = -velocityX;
+}
+
+function bounceY() {
+    setRandomColor();
+        setSize();
+        velocityY = -velocityY;
+}
+
 function myFunction(){
-    if (positionX >= (window.innerWidth-100)) {
-        setRandomColor();
-        setSize();
-        velocityX = -velocityX;
+    if (positionX >= (window.innerWidth-100) || positionX < 0) {
+        bounceX()
         }
-    else if (positionX < 0) {
-        setRandomColor();
-        setSize();
-        velocityX = -velocityX;
+    if (positionY >= (window.innerHeight-100) || positionY < 0) {
+        bounceY()
     }
     positionX = positionX + velocityX;
-    if (positionY >= (window.innerHeight-100)) {
-        setRandomColor();
-        setSize();
-        velocityY = -velocityY;
-    }
-    else if (positionY < 0) {
-        setRandomColor();
-        setSize();
-        velocityY = -velocityY;
-    }
     positionY = positionY + velocityY;
     ball.style.left = positionX + 'px';
     ball.style.top = positionY + 'px';
 
 }
-setInterval(myFunction, 3);
+setInterval(myFunction, 50);
 //------
-//Random Color------
-function getRandomColor() {
-var letters = '0123456789ABCDEF';
-var color = '#';
-for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-}
-return color;
-}
-function setRandomColor() {
-(ball.style.background = getRandomColor());
-}
 
 //
