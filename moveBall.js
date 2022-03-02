@@ -9,11 +9,12 @@ var positionY = 0;
 const ball = document.getElementById('ball');
 let width = ball.style.width;
 let height = ball.style.height;
+let xmouse,ymouse;
 
 //Random Size------
 function setSize(){
     (ball.style.height = Math.floor(Math.random() * 100)+20);
-    (ball.style.width = Math.floor(Math.random() * 100)+20);
+    (ball.style.width = ball.style.height);
   }
 
 //Random Color------
@@ -58,5 +59,16 @@ function myFunction(){
 }
 setInterval(myFunction, 50);
 //------
-
-//
+//Working on making new balls
+/* function factory(e) {
+var mouse = function (e) {
+    ymouse = e.clientY;
+    xmouse = e.clientX;
+    makeBall(xmouse, ymouse, randomColor());
+    totalFactoryOutput++; // one more made
+  };
+  if (window.addEventListener) {
+    document.addEventListener("mousedown", mouse, false);
+  }
+}
+*/
